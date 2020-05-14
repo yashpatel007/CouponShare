@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeLeaf-extras-springsecutity5"
+      lang="en">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div th:fragment="bs-navbar">
+            <nav class="navbar navbar-expand-lg navbar-lifht bg-dark">
+            <a class="navbar-brand" href="/">Coupon Share</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li th:if="${user!=null}" class="nav-item dropdown">
+                  <a th:text="${user.username}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">New Coupon</a>
+                    <a class="dropdown-item" href="#">My Coupons</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">logout</a>
+                  </div>
+                </li>
+                
+              </ul>
+                <ul class="ml-auto">
+                   <li class="nav-item">
+                  <a class="nav-link" href="/login" tabindex="-1" aria-disabled="true">login</a>
+                </li> 
+                </ul>
+            </div>
+          </nav>
+        </div>
+    </body>
+</html>
