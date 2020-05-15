@@ -19,12 +19,11 @@ and open the template in the editor.
         src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
         crossorigin="anonymous">
-            
         </script>
     </head>
     <body>
         <div th:replace="fragments/bs-navbar :: bs-navbar"></div>
-        <div class="container float-center">
+        <div  style="margin-top: 90px;" class="container float-center">
             <div class="row">
                 <div class="col-4">
                     <div th:replace="fragments/loginform :: login-form"></div>

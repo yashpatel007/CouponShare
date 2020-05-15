@@ -17,32 +17,36 @@ and open the template in the editor.
     </head>
     <body>
         <div th:fragment="bs-navbar">
-            <nav class="navbar navbar-expand-lg navbar-lifht bg-dark">
-            <a class="navbar-brand" href="/">Coupon Share</a>
+            <nav class="navbar navbar-expand-lg navbar-lifht bg-dark fixed-top">
+            <a class="navbar-brand" href="/">
+          <img style="height: 40px; width: 150px;" src="/images/logo.png" alt="">
+        </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-5">
                 <li th:if="${user!=null}" class="nav-item dropdown">
-                  <a th:text="${user.username}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <a th:text="${user.name}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">New Coupon</a>
-                    <a class="dropdown-item" href="#">My Coupons</a>
+                    <a class="dropdown-item" href="/newCoupon">New Coupon</a>
+                    <a class="dropdown-item" href="/myCoupons">My Coupons</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">logout</a>
+                    <form id="logoutButton" action="/logout" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <a  class="dropdown-item" href="javascript:{}" onclick="document.getElementById('logoutButton').submit();">Logout</a>
+                    </form>
                   </div>
                 </li>
-                
               </ul>
-                <ul class="ml-auto">
+               <ul th:if="${user==null}" class="ml-auto">
                    <li class="nav-item">
-                  <a class="nav-link" href="/login" tabindex="-1" aria-disabled="true">login</a>
-                </li> 
-                </ul>
+                        <a class="nav-link" href="/login" tabindex="-1" aria-disabled="true">login</a>
+                    </li> 
+               </ul>
             </div>
           </nav>
         </div>

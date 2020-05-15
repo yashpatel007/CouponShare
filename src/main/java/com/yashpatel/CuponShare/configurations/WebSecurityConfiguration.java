@@ -24,8 +24,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     
+     
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UserDetailsService userDetailsService;
    
      @Bean
      public PasswordEncoder getPasswordEncoder(){
@@ -34,17 +35,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      
      @Override
      protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//      auth.userDetailsService(userDetailsService)
-//                .passwordEncoder(getPasswordEncoder());
-       auth.inMemoryAuthentication()
-                .passwordEncoder(getPasswordEncoder())
-                .withUser("patelyash1311@gmail.com")
-                .password("asdf")
-                .roles("USER");
-      
-         
+      auth.userDetailsService(userDetailsService)
+                .passwordEncoder(getPasswordEncoder());
+//                 auth.inMemoryAuthentication()
+//                .passwordEncoder(getPasswordEncoder())
+//                .withUser("yp@mail.com")
+//                .password( getPasswordEncoder().encode("asdfasdf"))
+//                .roles("USER");
       }
-     
       @Override
       protected void configure(HttpSecurity http) throws Exception {
                     http  
@@ -60,7 +58,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .and()
                     .logout().logoutUrl("/logout")
-                    .permitAll(); 
-                    
+                    .permitAll();  
     }
 }

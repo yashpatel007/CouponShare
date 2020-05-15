@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeLeaf-extras-springsecutity5"
+      lang="en">
+    <head>
+        <title>My Coupons</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+            <div style="margin-top: 90px;" class="container ">
+                <div th:if="${coupon!=null}" class="row">
+                    <div  class="col-8">
+                        <form  method="post" th:action="|/id/${coupon.id}|">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <div class="form-group">
+                              <label for="title">Title</label>
+                              <input th:value="${coupon.title}" type="text" class="form-control" name="title" id="title" aria-describedby="titleHelp">
+                           
+                            </div>
+                            <div class="form-group">
+                              <label for="description">Description</label>
+                              <textarea th:text="${coupon.description}" rows="3" type="text" class="form-control" id="description" name="description"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="imageUrl">Image Url</label>
+                              <input th:value="${coupon.imageUrl}" type="text" class="form-control" name="imageUrl" id="imageUrl" aria-describedby="imageUrlHelp">
+                            </div>
+                            <div class="form-row">
+                            <div class="col">
+                                <div class="form-group">
+                                  <label for="code">Code(if any)</label>
+                                  <input th:value="${coupon.code}" type="text" class="form-control" name="code" id="code" aria-describedby="codeHelp">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                  <label for="buttonText">Button Text</label>
+                                  <input th:value="${coupon.buttonText}" type="text" class="form-control" name="buttonText" id="buttonText" aria-describedby="codeHelp">
+                                </div>
+                             </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="buttonUrl">Button Url</label>
+                              <input th:value="${coupon.buttonUrl}" type="text" class="form-control" name="buttonUrl" id="buttonUrl" aria-describedby="codeHelp">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img id="cardImage" th:src="${coupon.imageUrl}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 id="cardTitle" th:text="${coupon.title}" class="card-title">Card title</h5>
+                              <p th:text="${coupon.description}" id="cardDescription" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <div th:text="${coupon.code}" id="cardCode" class="p-1 mb-1 bg-info text-white text-center">CODE</div>
+                              <a th:text="${coupon.buttonText}" id="cardButtonText" th:href="${coupon.buttonUrl}" class="btn btn-primary btn-block">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+        $(document).ready(function(){
+          $("#title").keyup(function(){
+            $("#cardTitle").text($("#title").val());
+          });
+          $("#code").keyup(function(){
+            $("#cardCode").text($("#code").val());
+          });
+          
+          $("#buttonText").keyup(function(){
+            $("#cardButtonText").text($("#buttonText").val());
+          });
+           
+          $("#description").keyup(function(){
+            $("#cardDescription").text($("#description").val());
+          });
+            $("#imageUrl").keyup(function(){
+            $("#cardImage").attr("src",$("#imageUrl").val());
+          });
+          
+          
+          $("#buttonUrl").keyup(function(){
+            $("#cardButtonText").attr("href",$("#buttonUrl").val());
+          });
+          
+        });
+        </script>
+        
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -30,7 +30,7 @@ public class User implements UserDetails{
     
     @DBRef
     private Set<Authority> authorities = new HashSet<>();
-
+    
     @Override
     public Set<Authority> getAuthorities() {
         return authorities;

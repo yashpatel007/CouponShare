@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeLeaf-extras-springsecutity5"
+      lang="en">
+    <head>
+        <title>Home</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+    <body>
+        <div th:fragment="coupons-list">
+            <div style="margin-top: 90px;" class="container">
+                <h2>My Coupons</h2>
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Title</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each=" coupon : ${coupons}">
+                                <td><img style="width:40px; height: 50px;" th:src="${coupon.imageUrl}" ></td>
+                                <td th:text="${coupon.title}"></td>
+                                <td><a th:href="|/id/${coupon.id}|">Edit</a></td>
+                                <td>
+                                    <form th:if="${onMyCoupons}" class="ml-auto" action="/deleteCoupon" method="post">
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                        <input type="hidden" name="couponId" th:value="${coupon.id}">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            
+        </div>
+      </body>
+</html>
+
